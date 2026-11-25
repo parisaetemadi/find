@@ -1,11 +1,15 @@
 # Find
 
+> **Moved.** Find now lives in the `Personal` repo under `find/`, deployed by
+> the Cloudflare project that already serves that dashboard, at
+> `personal-b8d.pages.dev/find/`. One page did not justify a second Pages
+> project. Edit it there; this repo is kept only as the original history.
+
 Search in plain words — *“a film about a woman who leaves everything behind”* —
 and get the movies and books that are actually about it, with somewhere to
 watch or read each one, plus what other members are recommending.
 
-No build step: plain HTML, CSS and ES modules, deployed on Cloudflare Pages
-with one function for search.
+No build step: plain HTML, CSS and ES modules, with one function for search.
 
 ## How a search works
 
@@ -33,19 +37,6 @@ Everyone is pseudonymous: signing in with Google mints a handle like
 Members can save things, pass a pick to one person or the whole board, and
 like what others have passed on. The board is ranked by likes decayed with
 age, so it keeps moving.
-
-## Setup
-
-1. **Supabase** — project `discover`
-   (`https://buspsugelsfqayigqpyy.supabase.co`). Schema is in
-   `supabase/migrations/`; it is already applied. In the dashboard, enable
-   **Authentication → Providers → Google** with a Google OAuth client, and add
-   the deployed URL under **URL Configuration → Redirect URLs**.
-2. **Cloudflare Pages** — connect this repo, no build command, output `/`.
-   `functions/api/discover.js` deploys itself.
-3. **TMDB (optional but worth it)** — set `TMDB_KEY` in the Pages environment.
-   Without it the movie side falls back to Apple's catalogue, which publishes
-   no ratings, so ranking leans on text match alone.
 
 ## Tests
 
