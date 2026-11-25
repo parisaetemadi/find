@@ -1,0 +1,126 @@
+/* Find — minimal, classic, quiet. One serif for headings, one sans for
+   everything else, a single rule weight, and no colour that isn't carrying
+   meaning. Light and dark are the same layout with a different ground. */
+
+:root {
+  --bg: #fbfaf8;
+  --ink: #1b1a18;
+  --muted: #7c766e;
+  --line: #e2ded7;
+  --accent: #1b1a18;
+  --radius: 2px;
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+:root[data-theme="dark"] {
+  --bg: #121110;
+  --ink: #ece7e0;
+  --muted: #8d867d;
+  --line: #2a2724;
+  --accent: #ece7e0;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 15px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+
+/* ------------------------------------------------------------------ head */
+.head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 0;
+}
+.wordmark { font-family: var(--serif); font-size: 1.1rem; letter-spacing: .14em; text-transform: uppercase; }
+.who { font-size: .8rem; color: var(--muted); display: flex; gap: 1rem; align-items: baseline; }
+
+.btn {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font-size: .8rem; color: var(--muted); border-bottom: 1px solid var(--line);
+}
+.btn:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ------------------------------------------------------------------ main */
+main { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+h1 { font-family: var(--serif); font-weight: 500; font-size: 2.6rem; line-height: 1.1; margin: 2.5rem 0 .5rem; }
+.lede { color: var(--muted); max-width: 46ch; margin: 0 0 2rem; }
+
+.search { display: flex; gap: 1rem; align-items: baseline;
+  border-bottom: 1px solid var(--ink); padding-bottom: .5rem; margin-bottom: 1.5rem; }
+.search input {
+  flex: 1; border: 0; background: none; outline: none;
+  font-family: var(--serif); font-size: 1.25rem; padding: .2rem 0;
+}
+.search input::placeholder { color: var(--muted); font-style: italic; }
+.search button { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: none; border: 0; cursor: pointer; }
+.search button:hover { color: var(--ink); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.75rem; align-items: center; }
+.filters select {
+  background: none; border: 0; border-bottom: 1px solid var(--line);
+  padding: .2rem 0; font-size: .78rem; color: var(--muted); cursor: pointer;
+}
+.filters select:hover, .filters select:focus { color: var(--ink); border-color: var(--ink); outline: none; }
+.check { font-size: .78rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; cursor: pointer; }
+.check input { accent-color: var(--ink); }
+
+.tabs { display: flex; gap: 1.75rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+.tab {
+  background: none; border: 0; padding: 0 0 .3rem; cursor: pointer;
+  font-size: .78rem; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid transparent;
+}
+.tab.on { color: var(--ink); border-color: var(--ink); }
+
+.status { color: var(--muted); font-size: .82rem; min-height: 1.3em; margin: 0 0 1.5rem; }
+
+/* --------------------------------------------------------------- results */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+h2 { font-family: var(--serif); font-weight: 500; font-size: .95rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--line); }
+
+.list { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 46px 1fr; gap: 1rem;
+  padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.cover { width: 46px; aspect-ratio: 2/3; background: var(--line); overflow: hidden; border-radius: var(--radius); }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.row h3 { font-family: var(--serif); font-weight: 500; font-size: 1rem; margin: 0 0 .15rem; line-height: 1.3; }
+.meta { font-size: .76rem; color: var(--muted); margin: 0 0 .4rem; }
+.blurb { font-size: .83rem; color: var(--muted); margin: 0 0 .5rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.acts { display: flex; flex-wrap: wrap; gap: .9rem; font-size: .76rem; }
+.acts a, .acts button { color: var(--muted); text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; border-bottom: 1px solid transparent; }
+.acts a:hover, .acts button:hover { color: var(--ink); border-color: var(--ink); }
+.acts .on { color: var(--ink); }
+
+/* ------------------------------------------------------------ feed/board */
+.feed { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+.feed button { background: none; border: 0; cursor: pointer; padding: 0; text-align: left; }
+.feed .topic { font-family: var(--serif); font-size: 1rem; border-bottom: 1px solid var(--line); }
+.feed button:hover .topic { border-color: var(--ink); }
+.handle { font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+
+.note { font-size: .82rem; color: var(--muted); font-style: italic; margin: .3rem 0 0; }
+.empty { color: var(--muted); font-size: .85rem; }
+
+dialog {
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  border-radius: var(--radius); padding: 1.5rem; max-width: 380px; width: 90%;
+}
+dialog::backdrop { background: rgba(0,0,0,.35); }
+dialog h3 { font-family: var(--serif); font-weight: 500; margin: 0 0 1rem; }
+dialog label { display: block; font-size: .76rem; color: var(--muted); margin-bottom: 1rem; }
+dialog select, dialog input {
+  width: 100%; margin-top: .3rem; padding: .45rem 0; background: none;
+  border: 0; border-bottom: 1px solid var(--line); outline: none; font-size: .9rem;
+}
+.dialog-acts { display: flex; justify-content: flex-end; gap: 1.25rem; }
+
+@media (max-width: 720px) {
+  .cols { grid-template-columns: 1fr; gap: 2rem; }
+  h1 { font-size: 2rem; }
+}

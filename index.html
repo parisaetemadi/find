@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find — movies and books, by what they're about</title>
+<meta name="description" content="Search in plain words and find the movies and books about it, where to watch or read them, and what other members recommend.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121110'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23ece7e0' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // Set before first paint so a dark-mode visitor never sees the light ground.
+  (function () {
+    try {
+      document.documentElement.dataset.theme =
+        matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    } catch (e) { document.documentElement.dataset.theme = 'light'; }
+  })();
+</script>
+</head>
+<body>
+
+<header class="head">
+  <span class="wordmark">Find</span>
+  <!-- A member is a generated handle and nothing else. The name and email
+       Google returns are never read by this page. -->
+  <div class="who">
+    <span id="handle" hidden></span>
+    <button class="btn" id="sign-in" type="button" hidden>Sign in with Google</button>
+    <button class="btn" id="sign-out" type="button" hidden>Sign out</button>
+  </div>
+</header>
+
+<main>
+  <h1>What do you feel like?</h1>
+  <p class="lede">Ask in your own words — “a film about a woman who leaves everything
+    behind”, or just “grief”. You get the movies and books about it, where to watch
+    or read each one, and what everyone else is recommending.</p>
+
+  <form class="search" id="search-form" role="search">
+    <input id="q" type="search" autocomplete="off" aria-label="What are you looking for"
+           placeholder="a topic, a mood, or a whole sentence">
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Filters stay out of the way: one quiet row, no labels shouting. -->
+  <div class="filters" id="filters">
+    <select id="f-type" aria-label="Screen type">
+      <option value="movie">Films</option>
+      <option value="tv">TV shows</option>
+    </select>
+    <select id="f-len" aria-label="Length">
+      <option value="">Any length</option>
+      <option value="short">Under 45 min</option>
+      <option value="standard">45–120 min</option>
+      <option value="long">Over 2 hours</option>
+    </select>
+    <select id="f-lang" aria-label="Book language">
+      <option value="">Any language</option>
+      <option value="en">English only</option>
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+      <option value="de">German</option>
+      <option value="fa">Persian</option>
+    </select>
+    <select id="f-pages" aria-label="Book length">
+      <option value="">Any size</option>
+      <option value="short">Under 200 pp</option>
+      <option value="medium">200–450 pp</option>
+      <option value="long">Over 450 pp</option>
+    </select>
+    <label class="check"><input type="checkbox" id="f-translated"> Likely translated</label>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab on" type="button" data-tab="results">Results</button>
+    <button class="tab" type="button" data-tab="ranking">Top picks</button>
+    <button class="tab" type="button" data-tab="feed">Searches</button>
+    <button class="tab" type="button" data-tab="forme">For you</button>
+    <button class="tab" type="button" data-tab="saved">Your list</button>
+  </nav>
+
+  <p class="status" id="status"></p>
+
+  <section id="pane-results">
+    <div class="cols">
+      <div><h2>Movies</h2><div class="list" id="movies"></div></div>
+      <div><h2>Books</h2><div class="list" id="books"></div></div>
+    </div>
+  </section>
+
+  <section id="pane-ranking" hidden>
+    <h2>Top picks</h2>
+    <div class="list" id="ranking"></div>
+  </section>
+
+  <section id="pane-feed" hidden>
+    <h2>What people are searching</h2>
+    <div class="feed" id="feed"></div>
+  </section>
+
+  <section id="pane-forme" hidden>
+    <h2>Suggested to you</h2>
+    <div class="list" id="forme"></div>
+  </section>
+
+  <section id="pane-saved" hidden>
+    <h2>Your list</h2>
+    <div class="list" id="saved"></div>
+  </section>
+</main>
+
+<dialog id="suggest-dialog">
+  <form method="dialog" id="suggest-form">
+    <h3 id="suggest-title">Suggest</h3>
+    <label>To<select id="suggest-to"></select></label>
+    <label>Note<input id="suggest-note" maxlength="280" placeholder="why this one"></label>
+    <div class="dialog-acts">
+      <button class="btn" value="cancel" type="submit">Cancel</button>
+      <button class="btn" value="send" type="submit">Send</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
