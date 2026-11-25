@@ -10,20 +10,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<script>
-  // Set before first paint so a dark-mode visitor never sees the light ground.
-  (function () {
-    try {
-      document.documentElement.dataset.theme =
-        matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    } catch (e) { document.documentElement.dataset.theme = 'light'; }
-  })();
-</script>
+<!-- The ground is dark everywhere, system setting or not: this is a page for
+     reading at length in the evening, and the warm off-black it uses is the
+     point of the design rather than a preference. -->
 </head>
 <body>
 
 <header class="head">
   <span class="wordmark">Find</span>
+  <span class="rubric">films &amp; books, by what they are about</span>
   <!-- A member is a generated handle and nothing else. The name and email
        Google returns are never read by this page. -->
   <div class="who">
@@ -34,15 +29,57 @@
 </header>
 
 <main>
-  <h1>What do you feel like?</h1>
-  <p class="lede">Ask in your own words. A topic, a mood, or a whole sentence —
-    you get the films and books that are actually about it.</p>
+  <h1>Films and books, by what they are&nbsp;actually about.</h1>
 
   <form class="search" id="search-form" role="search">
     <input id="q" type="search" autocomplete="off" aria-label="What are you looking for"
-           placeholder="a topic, a mood, or a whole sentence">
+           placeholder="grief · Renaissance Florence · a heist that goes wrong">
     <button type="submit">Search</button>
   </form>
+
+  <!-- What the site does, drawn rather than explained: one sentence goes in,
+       a reel and a book come out of the same subject. It is inline SVG so it
+       costs no request and follows the page's two colours in either theme. -->
+  <section class="how" id="how" aria-label="How it works">
+    <figure>
+      <svg viewBox="0 0 92 64" role="img" aria-label="A typed sentence">
+        <rect x="6" y="10" width="80" height="44" rx="2" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <line x1="16" y1="24" x2="70" y2="24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+        <line x1="16" y1="32" x2="58" y2="32" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+        <line x1="16" y1="40" x2="40" y2="40" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".3"/>
+      </svg>
+      <figcaption><b>Ask in a sentence.</b> “A film about a woman who leaves
+        everything behind.” The subject words are what gets searched.</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 92 64" role="img" aria-label="Two catalogues searched at once">
+        <rect x="8" y="14" width="30" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <line x1="14" y1="24" x2="32" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+        <line x1="14" y1="31" x2="28" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+        <rect x="54" y="14" width="30" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <circle cx="61" cy="22" r="2" fill="currentColor" opacity=".6"/>
+        <circle cx="61" cy="32" r="2" fill="currentColor" opacity=".6"/>
+        <circle cx="77" cy="22" r="2" fill="currentColor" opacity=".6"/>
+        <circle cx="77" cy="32" r="2" fill="currentColor" opacity=".6"/>
+        <circle cx="46" cy="40" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <line x1="52" y1="46" x2="58" y2="52" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <figcaption><b>Both shelves at once.</b> Films and books on the same
+        subject, ranked by how well they match and how well they are rated.</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 92 64" role="img" aria-label="Where to watch or read, and what others suggest">
+        <rect x="10" y="16" width="22" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <rect x="60" y="16" width="22" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <path d="M36 31h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+        <path d="M50 26l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+        <path d="M46 56c-4-3.4-8-6-8-9.6a4 4 0 0 1 7-2.4 4 4 0 0 1 7 2.4c0 3.6-4 6.2-8 9.6z" fill="currentColor" opacity=".75"/>
+      </svg>
+      <figcaption><b>Then go and get it.</b> Every result links to IMDb,
+        Goodreads and somewhere to watch or read it — and you can pass it on,
+        anonymously, to anyone here.</figcaption>
+    </figure>
+  </section>
 
   <!-- Filters stay out of the way: one quiet row, no labels shouting. -->
   <div class="filters" id="filters">
