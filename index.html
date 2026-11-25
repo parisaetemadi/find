@@ -15,7 +15,7 @@
   (function () {
     try {
       document.documentElement.dataset.theme =
-        matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     } catch (e) { document.documentElement.dataset.theme = 'light'; }
   })();
 </script>
@@ -35,9 +35,8 @@
 
 <main>
   <h1>What do you feel like?</h1>
-  <p class="lede">Ask in your own words — “a film about a woman who leaves everything
-    behind”, or just “grief”. You get the movies and books about it, where to watch
-    or read each one, and what everyone else is recommending.</p>
+  <p class="lede">Ask in your own words. A topic, a mood, or a whole sentence —
+    you get the films and books that are actually about it.</p>
 
   <form class="search" id="search-form" role="search">
     <input id="q" type="search" autocomplete="off" aria-label="What are you looking for"

@@ -1,23 +1,28 @@
 /* Find — minimal, classic, quiet. One serif for headings, one sans for
    everything else, a single rule weight, and no colour that isn't carrying
-   meaning. Light and dark are the same layout with a different ground. */
+   meaning.
+   
+   The ground is dark by default and warm rather than black: #16140f sits
+   just off true black, so there is no halo around the type, and the text is
+   a soft bone white at roughly 11:1 against it — readable for a long sitting
+   without the glare that a white page gives at night. Pure #fff on pure #000
+   is the thing that hurts; neither appears here. A light ground is still
+   offered to anyone whose system asks for one. */
 
 :root {
-  --bg: #fbfaf8;
-  --ink: #1b1a18;
-  --muted: #7c766e;
-  --line: #e2ded7;
-  --accent: #1b1a18;
+  --bg: #16140f;
+  --ink: #e6e0d4;
+  --muted: #8b847a;
+  --line: #262219;
   --radius: 2px;
   --serif: "Spectral", Georgia, "Times New Roman", serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-:root[data-theme="dark"] {
-  --bg: #121110;
-  --ink: #ece7e0;
-  --muted: #8d867d;
-  --line: #2a2724;
-  --accent: #ece7e0;
+:root[data-theme="light"] {
+  --bg: #faf8f4;
+  --ink: #221f1a;
+  --muted: #7c766e;
+  --line: #e4e0d8;
 }
 
 * { box-sizing: border-box; }
@@ -45,8 +50,16 @@ button, input, select { font: inherit; color: inherit; }
 
 /* ------------------------------------------------------------------ main */
 main { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 6rem; }
-h1 { font-family: var(--serif); font-weight: 500; font-size: 2.6rem; line-height: 1.1; margin: 2.5rem 0 .5rem; }
-.lede { color: var(--muted); max-width: 46ch; margin: 0 0 2rem; }
+h1 { font-family: var(--serif); font-weight: 400; font-size: 2.3rem; line-height: 1.15;
+  margin: 4.5rem 0 .6rem; letter-spacing: -.01em; }
+.lede { color: var(--muted); max-width: 40ch; margin: 0 0 3rem; font-size: .9rem; }
+
+/* Before the first search the page is only its question and the line to type
+   on; the filters and the tabs appear once there is something to filter. */
+body:not(.searched) .filters,
+body:not(.searched) .tabs,
+body:not(.searched) .status { display: none; }
+body:not(.searched) h2 { display: none; }
 
 .search { display: flex; gap: 1rem; align-items: baseline;
   border-bottom: 1px solid var(--ink); padding-bottom: .5rem; margin-bottom: 1.5rem; }

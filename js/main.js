@@ -94,6 +94,7 @@ async function search(raw) {
   const topic = raw.trim();
   if (!topic) return;
   lastTopic = topic;
+  document.body.classList.add('searched');
   show('results');
   say(`Looking for “${topic}”…`);
 
@@ -234,7 +235,11 @@ $('search-form').addEventListener('submit', (e) => { e.preventDefault(); search(
 document.getElementById('filters').addEventListener('change', () => {
   if (lastTopic) search(lastTopic);
 });
-$('tabs').addEventListener('click', (e) => { if (e.target.dataset.tab) show(e.target.dataset.tab); });
+$('tabs').addEventListener('click', (e) => {
+  if (!e.target.dataset.tab) return;
+  document.body.classList.add('searched');
+  show(e.target.dataset.tab);
+});
 $('sign-in').addEventListener('click', signIn);
 $('sign-out').addEventListener('click', async () => { await signOut(); refreshAuth(); });
 if (configured) onAuthChange(refreshAuth);
