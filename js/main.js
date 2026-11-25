@@ -231,6 +231,23 @@ async function refreshAuth() {
 
 /* ------------------------------------------------------------------ boot */
 $('search-form').addEventListener('submit', (e) => { e.preventDefault(); search($('q').value); });
+// The three panels on the landing are live examples: clicking one runs it,
+// which is a faster explanation than any caption.
+document.getElementById('how').addEventListener('click', (e) => {
+  const fig = e.target.closest('[data-demo]');
+  if (!fig) return;
+  $('q').value = fig.dataset.demo;
+  search(fig.dataset.demo);
+});
+document.getElementById('how').addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const fig = e.target.closest('[data-demo]');
+  if (!fig) return;
+  e.preventDefault();
+  $('q').value = fig.dataset.demo;
+  search(fig.dataset.demo);
+});
+
 // Changing a filter re-runs the last search rather than needing a second click.
 document.getElementById('filters').addEventListener('change', () => {
   if (lastTopic) search(lastTopic);

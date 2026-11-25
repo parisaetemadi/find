@@ -81,6 +81,64 @@ body:not(.searched) h2 { display: none; }
 .how b { font-weight: 500; color: var(--ink); }
 body.searched .how { display: none; }
 
+/* Each panel is also a button: it runs the example it illustrates. */
+.how figure { cursor: pointer; transition: color .25s ease, border-color .25s ease; }
+.how figure:hover, .how figure:focus-visible { color: var(--ink); border-color: var(--ink); outline: none; }
+.how figure:hover svg, .how figure:focus-visible svg { color: var(--ink); }
+
+/* --- the drawings move, slowly, on a ten-second loop -------------------
+   Each one shows the step it describes rather than decorating it: the
+   sentence types itself and keeps its subject words lit, the lens crosses
+   from one shelf to the other, and a pick is handed over and liked. */
+
+/* 1. typing */
+.type { stroke-dasharray: 60; stroke-dashoffset: 60; animation: draw 9s ease-in-out infinite; opacity: .75; }
+.t2 { animation-delay: .5s; opacity: .5; }
+.t3 { animation-delay: 1s; opacity: .35; }
+@keyframes draw {
+  0% { stroke-dashoffset: 60; }
+  22%, 72% { stroke-dashoffset: 0; }
+  86%, 100% { stroke-dashoffset: 60; }
+}
+/* the two words the search actually keeps */
+.keep { fill: var(--ink); opacity: 0; animation: lit 9s ease-in-out infinite; }
+.k1 { animation-delay: 2.1s; }
+.k2 { animation-delay: 2.5s; }
+@keyframes lit { 0%, 10% { opacity: 0; } 25%, 70% { opacity: .22; } 85%, 100% { opacity: 0; } }
+.caret { animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* 2. the lens crossing both shelves */
+.lens { animation: sweep 9s ease-in-out infinite; }
+@keyframes sweep {
+  0%, 8% { transform: translateX(-24px); }
+  45%, 55% { transform: translateX(0); }
+  92%, 100% { transform: translateX(24px); }
+}
+
+/* 3. the hand-off, then the like */
+.pass { animation: hand 9s ease-in-out infinite; }
+@keyframes hand {
+  0%, 15% { transform: translateX(0); opacity: .8; }
+  45%, 100% { transform: translateX(46px); opacity: .8; }
+}
+.heart { opacity: 0; transform-origin: 46px 50px; animation: beat 9s ease-in-out infinite; }
+@keyframes beat {
+  0%, 48% { opacity: 0; transform: scale(.6); }
+  56% { opacity: .9; transform: scale(1.15); }
+  62%, 92% { opacity: .75; transform: scale(1); }
+  100% { opacity: 0; transform: scale(.6); }
+}
+
+/* Anyone who asks for less motion gets the finished frame, not the loop. */
+@media (prefers-reduced-motion: reduce) {
+  .type, .keep, .caret, .lens, .pass, .heart { animation: none; }
+  .type { stroke-dashoffset: 0; }
+  .keep { opacity: .22; }
+  .heart { opacity: .75; transform: none; }
+  .pass { transform: translateX(46px); }
+}
+
 .filters { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.75rem; align-items: center; }
 .filters select {
   background: none; border: 0; border-bottom: 1px solid var(--line);
