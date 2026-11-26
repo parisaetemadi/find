@@ -1,6 +1,6 @@
 # Find
 
-> **Purpose.** Archived. Find now lives in the `Personal` repo under `find/`, deployed at `/find/`. This repo is kept only as the original history — edit it there, not here.
+> **Purpose.** Search films and books in plain words and get what they are actually about. Archived: it now lives in the Personal repo under `find/`.
 
 
 Search in plain words — *“a film about a woman who leaves everything behind”* —
