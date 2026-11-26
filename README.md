@@ -1,9 +1,7 @@
 # Find
 
-> **Moved.** Find now lives in the `Personal` repo under `find/`, deployed by
-> the Cloudflare project that already serves that dashboard, at
-> `personal-b8d.pages.dev/find/`. One page did not justify a second Pages
-> project. Edit it there; this repo is kept only as the original history.
+> **Purpose.** Archived. Find now lives in the `Personal` repo under `find/`, deployed at `/find/`. This repo is kept only as the original history — edit it there, not here.
+
 
 Search in plain words — *“a film about a woman who leaves everything behind”* —
 and get the movies and books that are actually about it, with somewhere to
@@ -43,3 +41,12 @@ age, so it keeps moving.
 ```sh
 node --test functions/api/_query.test.mjs
 ```
+
+## Agent rules
+
+- Commit straight to `main` and push — no branches, no PRs, no merges, never watch a PR.
+- One commit per session. Test it yourself before committing; don't report untested work.
+- Don't ask permission for deploys, settings, or deleting what's been replaced.
+- Save tokens: bullets over prose, read only the files named, targeted edits, batched tool calls.
+- Comments: one bullet list per file or section, never a comment per chunk of code.
+- Full detail: [CLAUDE.md](CLAUDE.md)
